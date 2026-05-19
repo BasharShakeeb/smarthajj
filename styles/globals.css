@@ -4,9 +4,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
@@ -21,162 +19,292 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-
-/* ─── Vision 2030 Light Theme ─────────────────────────────── */
+/* ─── Saudi Government Clean Crisp White & Official Palette Theme ─── */
 :root {
-  /* Surfaces */
-  --background:          #F0F4F8;          /* cool off-white page bg   */
-  --foreground:          #0D1F2D;          /* deep navy text           */
+  /* Crisp White Surfaces & Professional Typography */
+  --background:          #FFFFFF;
+  --foreground:          #0F172A;
 
-  /* Saudi Green — primary action */
-  --primary:             #006B3C;          /* Saudi heritage green     */
-  --primary-light:       #00955A;          /* hover state              */
-  --primary-foreground:  #FFFFFF;
+  /* Saudi Official National Colors */
+  --primary:             #006C35;          /* Saudi Official Green */
+  --secondary:           #1E5AA8;          /* Saudi Royal Blue */
+  --accent:              #2980B9;          /* Lighter Saudi Blue */
 
-  /* Royal Blue — secondary / accents */
-  --secondary:           #0057A8;          /* Vision 2030 blue         */
-  --secondary-light:     #1A72C8;
-  --secondary-foreground:#FFFFFF;
-
-  /* Surfaces */
+  /* Crisp White Cards & Light UI Components */
   --card:                #FFFFFF;
-  --card-foreground:     #0D1F2D;
+  --card-foreground:     #0F172A;
+  --muted:               #F8FAFC;
+  --muted-foreground:    #475569;
+  --border:              #E2E8F0;
 
-  --muted:               #EBF0F5;
-  --muted-foreground:    #5B7589;
+  --radius: 1rem;
 
-  --accent:              #0057A8;          /* re-use blue for accents  */
-  --border:              #D1DCE8;
-
-  --radius: 0.75rem;
-
-  /* Status colours — kept inside palette */
-  --status-success:      #006B3C;
-  --status-warning:      #0057A8;          /* use blue instead of amber*/
-  --status-danger:       #C0392B;          /* a deep red, minimal use  */
-  --status-info:         #0096C7;
+  /* Status System (Saudi Green + Blue) */
+  --status-success:      #00A36C;
+  --status-warning:      #1E5AA8;
+  --status-danger:       #0F2440;
+  --status-info:         #2980B9;
 }
 
-/* ─── Dark variant (HTML .dark class) ─────*/
-html.dark {
-  --background:          #0B1520;
-  --foreground:          #E8F0F8;
-
-  --primary:             #00C176;
-  --primary-light:       #00E090;
-  --primary-foreground:  #001A0D;
-
-  --secondary:           #3A8FE8;
-  --secondary-light:     #5AAFF8;
-  --secondary-foreground:#001230;
-
-  --card:                #0F1E2F;
-  --card-foreground:     #E8F0F8;
-
-  --muted:               #162436;
-  --muted-foreground:    #7A9BB5;
-
-  --accent:              #3A8FE8;
-  --border:              #1E3148;
-
-  --status-success:      #00C176;
-  --status-warning:      #3A8FE8;
-  --status-danger:       #E05B5B;
-  --status-info:         #00B4D8;
-}
-
-/* ─── Base ───────────────────────────────────────────────────*/
+/* Base resets & clean defaults */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: #FFFFFF !important;
 }
 
 body {
-  color:       var(--foreground);
-  background:  var(--background);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color:       #0F172A !important;
+  background:  #FFFFFF !important;
+  font-family: 'Outfit', 'Cairo', 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  overflow-x: hidden;
 }
 
-/* ─── Glass Card ─────────────────────────────────────────────*/
+/* ─── COMPONENT BACKGROUND & TEXT COLOR OVERRIDES FOR LIGHT TRANSITION ─── */
+/* Force all hardcoded deep dark navy/slate panel backgrounds to crisp white */
+.bg-\[\#071226\],
+.bg-\[\#162032\],
+.bg-\[\#0F2440\],
+.bg-\[\#0B1A2E\],
+.bg-\[\#122A4A\],
+.bg-\[\#1B3A5C\],
+.bg-\[\#030914\],
+.bg-\[\#050c1b\],
+.bg-\[\#0B1120\],
+.bg-\[\#030813\],
+.bg-\[\#0A1628\],
+.bg-\[\#071226\]\/50,
+.bg-\[\#071226\]\/40,
+.bg-\[\#162032\]\/50,
+.bg-\[\#0F2440\]\/50,
+.bg-\[\#0F2440\]\/95,
+.bg-\[\#0B1A2E\]\/50,
+.bg-\[\#122A4A\]\/50,
+.bg-\[\#1B3A5C\]\/50,
+.bg-\[\#030914\]\/50,
+.bg-\[\#0A1628\]\/60,
+.bg-slate-900,
+.bg-slate-950,
+.bg-slate-950\/60,
+.bg-\[\#071226\]\/20,
+.bg-\[\#0F2440\]\/90,
+.bg-slate-800\/20,
+.bg-slate-800\/30,
+.bg-slate-800\/40,
+.bg-\[\#EF4444\]\/5,
+.bg-\[\#F59E0B\]\/5,
+.bg-\[\#10B981\]\/5,
+.bg-\[\#006C35\]\/5,
+.bg-\[\#1E5AA8\]\/5 {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+
+
+/* Form selects, select dropdown options, and inputs background clean light grey */
+select, input, textarea,
+select option,
+.bg-slate-950\/60 select,
+.bg-slate-950\/60 select option {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+  border-color: #E2E8F0 !important;
+}
+
+select option {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+/* Sidebar background crisp white override */
+aside, 
+aside .bg-\[\#050c1b\]\/50,
+aside .bg-\[\#030813\],
+aside .bg-\[\#0A1628\],
+aside .bg-\[\#0A1628\]\/60 {
+  background-color: #FFFFFF !important;
+  border-right: 1px solid #E2E8F0 !important;
+  border-left: 1px solid #E2E8F0 !important;
+  box-shadow: 0 4px 30px rgba(0, 108, 53, 0.04) !important;
+}
+
+/* Keep active indicators and icons prominent */
+aside a.text-slate-400 {
+  color: #475569 !important;
+}
+aside a.text-slate-400:hover, 
+aside a:hover {
+  background-color: #F1F5F9 !important;
+  color: #006C35 !important;
+}
+
+/* Force light elegant borders */
+.border,
+.border-slate-800\/80,
+.border-slate-800\/60,
+.border-slate-800,
+.border-slate-700\/50,
+.border-\[\#1B3A5C\],
+.border-\[\#1B3A5C\]\/50,
+.border-\[\#1E5AA8\]\/30,
+.border-slate-700,
+.border-slate-700\/40,
+.border-slate-700\/50,
+.border-slate-800\/60,
+.border-slate-800\/80 {
+  border-color: #E2E8F0 !important;
+}
+
+/* Fix hardcoded white/slate text for dark mode in light mode */
+.text-slate-100,
+.text-slate-200,
+.text-slate-300,
+.text-white,
+h1, h2, h3, h4, h5, h6 {
+  color: #0F172A !important;
+}
+
+.text-slate-400 {
+  color: #475569 !important;
+}
+
+.text-slate-500 {
+  color: #64748B !important;
+}
+
+/* Glass panel light style override */
 .glass {
-  background:            rgba(255, 255, 255, 0.55);
-  backdrop-filter:       blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border:                1px solid rgba(0, 87, 168, 0.15);
+  background: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 10px 30px rgba(0, 108, 53, 0.04) !important;
 }
 
-html.dark .glass {
-  background:  rgba(15, 30, 47, 0.60);
-  border:      1px solid rgba(58, 143, 232, 0.15);
+/* Maps and charts text styling */
+svg text {
+  fill: #0F172A !important;
 }
 
-/* ─── Gradient Helpers ───────────────────────────────────────*/
-.gradient-primary {
-  background: linear-gradient(135deg, #006B3C 0%, #0057A8 100%);
+/* Clean, crisp light mode scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-
-.gradient-soft {
-  background: linear-gradient(135deg, #E8F5EE 0%, #E8F0FA 100%);
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
 }
-
-/* ─── Status dot colours ─────────────────────────────────────*/
-.dot-success  { background-color: var(--status-success); }
-.dot-warning  { background-color: var(--status-warning); }
-.dot-danger   { background-color: var(--status-danger);  }
-.dot-info     { background-color: var(--status-info);    }
-
-/* ─── Scrollbar ──────────────────────────────────────────────*/
-::-webkit-scrollbar        { width: 6px; height: 6px; }
-::-webkit-scrollbar-track  { background: transparent; }
-::-webkit-scrollbar-thumb  {
-  background:    rgba(0, 87, 168, 0.25);
+::-webkit-scrollbar-thumb {
+  background: rgba(30, 90, 168, 0.15);
   border-radius: 10px;
+  border: 2px solid #F8FAFC;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 87, 168, 0.50);
+  background: rgba(0, 108, 53, 0.35);
 }
 
-/* ─── Utility ────────────────────────────────────────────────*/
-@layer utilities {
-  .text-balance { text-wrap: balance; }
+/* Saudi Green Glow Borders for light theme */
+.glow-border-green {
+  border-color: rgba(0, 108, 53, 0.2);
+  box-shadow: 0 0 12px rgba(0, 108, 53, 0.05);
 }
 
-/* ─── Smooth Focus Ring ──────────────────────────────────────*/
-:focus-visible {
-  outline:        2px solid var(--primary);
-  outline-offset: 2px;
-  border-radius:  4px;
+/* Saudi Blue Glow Borders for light theme */
+.glow-border-blue {
+  border-color: rgba(30, 90, 168, 0.2);
+  box-shadow: 0 0 12px rgba(30, 90, 168, 0.05);
 }
 
-/* ─── Input Base ─────────────────────────────────────────────*/
-input, textarea, select {
-  color:            var(--foreground);
-  background-color: var(--muted);
-  border:           1px solid var(--border);
-  border-radius:    var(--radius);
-  transition:       border-color 0.2s, box-shadow 0.2s;
+.glow-border-red {
+  border-color: rgba(30, 90, 168, 0.2);
+  box-shadow: 0 0 12px rgba(30, 90, 168, 0.05);
 }
 
-input:focus, textarea:focus, select:focus {
-  outline:     none;
-  border-color: var(--primary);
-  box-shadow:  0 0 0 3px rgba(0, 107, 60, 0.12);
+.glow-border-yellow {
+  border-color: rgba(0, 108, 53, 0.2);
+  box-shadow: 0 0 12px rgba(0, 108, 53, 0.05);
 }
 
-/* ─── Toast Notifications Keyframes & Utilities ────────────── */
-@keyframes slideIn {
+/* Text Glows */
+.text-glow-green, .text-glow-blue, .text-glow-red, .text-glow-yellow {
+  text-shadow: none !important;
+}
+
+/* Animated flow paths on light background maps */
+@keyframes flowArrows {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-flow-path {
+  stroke-dasharray: 8, 4;
+  animation: flowArrows 3s linear infinite;
+}
+
+/* Status Pulse Ring */
+@keyframes distressRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 108, 53, 0.3), 0 0 0 0 rgba(0, 108, 53, 0.1);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(0, 108, 53, 0), 0 0 0 20px rgba(0, 108, 53, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 108, 53, 0), 0 0 0 0 rgba(0, 108, 53, 0);
+  }
+}
+
+.animate-sos-pulse {
+  animation: distressRing 1.6s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes glowIntensity {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-glow-pulse {
+  animation: glowIntensity 2s infinite ease-in-out;
+}
+
+/* Card Hover Light style */
+.futurism-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.futurism-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(30, 90, 168, 0.2) !important;
+  box-shadow: 0 10px 30px rgba(30, 90, 168, 0.06) !important;
+}
+
+.gradient-primary {
+  background: linear-gradient(135deg, #006C35 0%, #1E5AA8 100%);
+}
+
+.gradient-text-neon {
+  background: linear-gradient(90deg, #006C35 0%, #1E5AA8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Slide transitions */
+@keyframes slideInUp {
   from {
-    transform: translateY(-1rem);
+    transform: translateY(10px);
     opacity: 0;
   }
   to {
@@ -185,6 +313,6 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
-.animate-slide-in {
-  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-slide-up {
+  animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
