@@ -72,10 +72,6 @@ export default function AlertsPage() {
             {language === 'ar' ? 'مركز التحكم المتكامل للبلاغات والاستجابة الفورية' : 'Integrated Command Center for Alerts & Rapid Response'}
           </p>
         </div>
-        <div className="text-right">
-          <span className="text-slate-900 font-mono text-sm font-black tracking-widest block">{time}</span>
-          <span className="text-[10px] text-slate-600 font-bold">1447/11/13 هـ</span>
-        </div>
       </div>
 
       {/* ─── Top Stats Cards ─── */}

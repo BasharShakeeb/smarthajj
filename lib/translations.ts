@@ -1,6 +1,6 @@
 export const translations = {
   ar: {
-    appName: "المسار المضيء",
+    appName: "سيّر",
     subTitle: "منظومة سوار الحجاج الذكية",
     dashboard: "الرئيسية",
     crowdManagement: "إدارة الحشود",
@@ -164,10 +164,10 @@ export const translations = {
     csvExport: "تصدير كبيانات CSV",
     dailyReport: "تقرير أداء الحشود اليومي",
     weeklyReport: "تقرير إحصائيات الموسم الأسبوعي",
-    reportsDesc: "تحليل بياني شامل لحركة وتفويج الحجاج المسجلة بأساور المسار المضيء.",
+    reportsDesc: "تحليل بياني شامل لحركة وتفويج الحجاج المسجلة بأساور سيّر.",
 
     // Page: Settings
-    systemSettings: "إعدادات منظومة المسار المضيء الذكية",
+    systemSettings: "إعدادات منظومة سيّر الذكية",
     userManagement: "إدارة مستخدمي لوحة التحكم والصلاحيات",
     rolesTitle: "صلاحيات الوصول والأدوار التشغيلية",
     notificationsSettings: "إعدادات التنبيهات المباشرة والأصوات",
@@ -175,7 +175,7 @@ export const translations = {
     saveBtn: "حفظ الإعدادات الفورية"
   },
   en: {
-    appName: "Luminous Path",
+    appName: "Sayer",
     subTitle: "Smart Hajj Bracelet System",
     dashboard: "Dashboard",
     crowdManagement: "Crowd Management",
@@ -339,7 +339,7 @@ export const translations = {
     csvExport: "Export raw CSV dataset",
     dailyReport: "Daily Flow Analysis Report",
     weeklyReport: "Weekly Seasonal Aggregated Report",
-    reportsDesc: "Comprehensive sensor statistics gathered from Luminous Path bracelet nodes.",
+    reportsDesc: "Comprehensive sensor statistics gathered from Sayer bracelet nodes.",
 
     // Page: Settings
     systemSettings: "System Management Settings Panel",

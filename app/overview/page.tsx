@@ -81,14 +81,8 @@ export default function OverviewPage() {
       {/* ─── Header Dashboard Bar ─── */}
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl glass border border-slate-200 bg-white">
         <div className="flex items-center gap-4">
-          <div className="hidden sm:flex w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#006C35] to-[#1E5AA8] items-center justify-center shadow-[0_0_20px_rgba(0,255,136,0.25)] flex-shrink-0">
-            <ShieldCheck className="text-slate-950" size={32} />
-          </div>
+          <img src="/sayer.PNG" alt="Sayer Logo" className="h-20 w-20 object-contain rounded-2xl shadow-md flex-shrink-0" />
           <div>
-            <div className="flex items-center gap-2">
-              <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#00A36C] animate-pulse" />
-              <span className="text-[10px] font-black tracking-widest text-slate-600 uppercase">SAUDI VISION 2030</span>
-            </div>
             <h1 className="text-2xl font-black tracking-tight text-glow-blue text-slate-900 mt-0.5">
               {t.appName}
             </h1>
@@ -100,19 +94,18 @@ export default function OverviewPage() {
 
         {/* Dynamic Cockpit Stats & clock */}
         <div className="flex items-center gap-4 self-end md:self-auto">
-          <img src="/vision.png" alt="Vision 2030" className="h-10 object-contain" />
         </div>
       </header>
 
       {/* ─── Stats Grid (Top row metrics) ─── */}
       <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {[
-          { icon: Users, label: t.totalPilgrims, value: totalPilgrims.toLocaleString(), color: 'text-[#006C35]' },
-          { icon: RouteIcon, label: t.activeRoutes, value: activeRoutesCount, color: 'text-[#006C35]' },
-          { icon: Flame, label: t.currentCrowd, value: currentCrowdCount.toLocaleString(), color: 'text-[#2980B9]' },
-          { icon: AlertTriangle, label: t.emergencyCases, value: emergencyCount, color: 'text-[#94A3B8]', isEmergency: emergencyCount > 0 },
-          { icon: ShieldCheck, label: t.safetyRate, value: `${safetyRate}%`, color: 'text-[#006C35]' },
-          { icon: Clock, label: t.responseTime, value: `${Math.floor(responseTimeSeconds / 60)}:${String(responseTimeSeconds % 60).padStart(2, '0')} ${language === 'ar' ? 'دقائق' : 'mins'}`, color: 'text-[#2980B9]' }
+          { icon: Users, label: t.totalPilgrims, value: totalPilgrims.toLocaleString(), color: 'text-slate-600' },
+          { icon: RouteIcon, label: t.activeRoutes, value: activeRoutesCount, color: 'text-[#0D7A3E]' },
+          { icon: Flame, label: t.currentCrowd, value: currentCrowdCount.toLocaleString(), color: 'text-[#2B89C7]' },
+          { icon: AlertTriangle, label: t.emergencyCases, value: emergencyCount, color: 'text-[#EF4444]', isEmergency: emergencyCount > 0 },
+          { icon: ShieldCheck, label: t.safetyRate, value: `${safetyRate}%`, color: 'text-[#0D7A3E]' },
+          { icon: Clock, label: t.responseTime, value: `${Math.floor(responseTimeSeconds / 60)}:${String(responseTimeSeconds % 60).padStart(2, '0')} ${language === 'ar' ? 'دقائق' : 'mins'}`, color: 'text-[#2B89C7]' }
         ].map((stat, idx) => (
           <div
             key={idx}
@@ -236,25 +229,25 @@ export default function OverviewPage() {
 
             <div className="space-y-4">
               {routes.map((route) => {
-                let badgeClass = 'text-[#00A36C] bg-[#006C35] border-[#006C35]';
-                let glowBorder = 'rgba(0, 255, 136, 0.15)';
+                let badgeClass = 'text-emerald-700 bg-emerald-50 border-emerald-200';
                 let statusLabel = t.open;
+                let colorHex = '#0D7A3E';
 
                 if (route.status === 'crowded') {
-                  badgeClass = 'text-[#2980B9] bg-[#2980B9] border-[#2980B9]';
-                  glowBorder = 'rgba(255, 193, 7, 0.15)';
+                  badgeClass = 'text-amber-700 bg-amber-50 border-amber-200';
                   statusLabel = t.crowded;
+                  colorHex = '#F59E0B';
                 } else if (route.status === 'closed') {
-                  badgeClass = 'text-[#1E5AA8] bg-[#1E5AA8] border-[#1E5AA8]';
-                  glowBorder = 'rgba(255, 59, 48, 0.15)';
+                  badgeClass = 'text-rose-700 bg-rose-50 border-rose-200';
                   statusLabel = t.closed;
+                  colorHex = '#EF4444';
                 }
 
                 return (
                   <div key={route.id} className="space-y-2 p-3 rounded-xl border border-slate-200 bg-white relative overflow-hidden group hover:border-slate-200 transition-colors">
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2 min-w-0">
-                        <div className="w-1.5 h-6 rounded-full bg-white" style={{ backgroundColor: route.status === 'open' ? '#00A36C' : route.status === 'crowded' ? '#2980B9' : '#1E5AA8' }} />
+                        <div className="w-1.5 h-6 rounded-full flex-shrink-0" style={{ backgroundColor: colorHex }} />
                         <span className="text-xs font-bold text-slate-900 truncate">{language === 'ar' ? route.nameAr : route.nameEn}</span>
                       </div>
                       <div className="flex items-center gap-2">
@@ -266,14 +259,14 @@ export default function OverviewPage() {
                     </div>
 
                     {/* Progress slider bar */}
-                    <div className="w-full h-1.5 rounded-full bg-white overflow-hidden">
+                    <div className="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden">
                       <div
                         className="h-full rounded-full transition-all duration-500"
                         style={{
                           width: `${route.usagePercent}%`,
                           background: route.status === 'open'
-                            ? 'linear-gradient(90deg, #00C176, #00A36C)'
-                            : route.status === 'crowded' ? '#2980B9' : '#1E5AA8'
+                            ? 'linear-gradient(90deg, #10B981, #0D7A3E)'
+                            : colorHex
                         }}
                       />
                     </div>
@@ -477,20 +470,35 @@ export default function OverviewPage() {
               {/* Bracelet capsules rendering mock */}
               <div className="grid grid-cols-3 gap-3 py-4">
                 {[
-                  { color: 'green', label: t.openRouteLabel, border: 'border-[#006C35] bg-[#006C35] hover:border-emerald-400', glow: 'shadow-[0_0_15px_rgba(0,255,136,0.3)] bg-[#00A36C]' },
-                  { color: 'yellow', label: t.warningCrowdedLabel, border: 'border-[#2980B9] bg-[#2980B9] hover:border-amber-400', glow: 'shadow-[0_0_15px_rgba(245,158,11,0.3)] bg-amber-400' },
-                  { color: 'red', label: t.stopDangerLabel, border: 'border-[#1E5AA8] bg-[#1E5AA8] hover:border-rose-400', glow: 'shadow-[0_0_20px_rgba(239,68,68,0.4)] bg-[#1E5AA8] animate-pulse' }
+                  {
+                    color: 'green',
+                    label: t.openRouteLabel,
+                    cardClasses: 'border-emerald-200 bg-emerald-50/80 text-emerald-900 hover:border-emerald-400 hover:bg-emerald-100/90',
+                    glow: 'shadow-[0_0_15px_rgba(16,185,129,0.5)] bg-emerald-500'
+                  },
+                  {
+                    color: 'yellow',
+                    label: t.warningCrowdedLabel,
+                    cardClasses: 'border-amber-200 bg-amber-50/80 text-amber-900 hover:border-amber-400 hover:bg-amber-100/90',
+                    glow: 'shadow-[0_0_15px_rgba(245,158,11,0.5)] bg-amber-500'
+                  },
+                  {
+                    color: 'red',
+                    label: t.stopDangerLabel,
+                    cardClasses: 'border-rose-200 bg-rose-50/80 text-rose-900 hover:border-rose-400 hover:bg-rose-100/90',
+                    glow: 'shadow-[0_0_20px_rgba(239,68,68,0.6)] bg-rose-500 animate-pulse'
+                  }
                 ].map((br, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveBraceletColor(br.color as any)}
-                    className={`flex flex-col items-center p-4 rounded-xl border text-center transition-all cursor-pointer ${br.border} ${activeBraceletColor === br.color ? 'ring-2 ring-cyan-500 scale-105' : 'hover:scale-[1.02]'}`}
+                    className={`flex flex-col items-center p-4 rounded-xl border text-center transition-all cursor-pointer ${br.cardClasses} ${activeBraceletColor === br.color ? 'ring-4 ring-emerald-500/30 scale-105' : 'hover:scale-[1.02]'}`}
                   >
                     {/* Visual Capsule Ring representation */}
-                    <div className="w-16 h-8 rounded-full border-4 border-slate-200 flex items-center justify-center relative bg-white mb-3">
+                    <div className="w-16 h-8 rounded-full border-4 border-slate-200 flex items-center justify-center relative bg-white mb-3 shadow-inner">
                       <div className={`w-8 h-2 rounded-full ${br.glow}`} />
                     </div>
-                    <span className="text-[10px] font-black text-slate-900 leading-normal">{br.label}</span>
+                    <span className="text-[10px] font-black leading-normal">{br.label}</span>
                   </button>
                 ))}
               </div>

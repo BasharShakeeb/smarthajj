@@ -54,7 +54,7 @@ export default function RootLayout({
         <body className="bg-white min-h-screen text-slate-900 flex items-center justify-center font-sans">
           <div className="flex flex-col items-center gap-4">
             <div className="w-12 h-12 rounded-full border-t-2 border-[#006C35] border-r-2 border-[#1E5AA8] animate-spin" />
-            <p className="text-sm font-semibold tracking-wider text-slate-600">LOADING SMART HAJJ SYSTEM...</p>
+            <p className="text-sm font-semibold tracking-wider text-slate-600">LOADING SAYER SYSTEM...</p>
           </div>
         </body>
       </html>
@@ -64,8 +64,8 @@ export default function RootLayout({
   return (
     <html lang={language} dir={language === 'ar' ? 'rtl' : 'ltr'} className={theme}>
       <head>
-        <title>منظومة المسار المضيء — Smart Hajj Bracelet System</title>
-        <meta name="description" content="Luminous Path Hajj Operational Dashboard — Saudi Vision 2030" />
+        <title>منظومة سيّر — Sayer Smart Hajj Bracelet System</title>
+        <meta name="description" content="Sayer Hajj Operational Dashboard — Saudi Vision 2030" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />

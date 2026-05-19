@@ -42,11 +42,11 @@ export default function CrowdManagementPage() {
 
   // Simulation parameters for 5 regions
   const [regions, setRegions] = useState([
-    { id: 1, nameAr: 'منطقة 1 (جسر الجمرات)', nameEn: 'Zone 1 (Jamarat Bridge)', pilgrims: 351432, density: 78, statusAr: 'طبيعي', statusEn: 'Normal', color: '#2980B9', statusKey: 'warning', closedRoutes: 1 },
-    { id: 2, nameAr: 'منطقة 2 (الخيام السكنية)', nameEn: 'Zone 2 (Camps Grid)', pilgrims: 821356, density: 82, statusAr: 'مزدحم', statusEn: 'Crowded', color: '#2980B9', statusKey: 'warning', closedRoutes: 0 },
-    { id: 3, nameAr: 'منطقة 3 (محطة القطار)', nameEn: 'Zone 3 (Train Station)', pilgrims: 590124, density: 88, statusAr: 'مزدحم جداً', statusEn: 'Highly Crowded', color: '#2980B9', statusKey: 'warning', closedRoutes: 1 },
-    { id: 4, nameAr: 'منطقة 4 (طريق الشعيبين)', nameEn: 'Zone 4 (Al-Shuaibeen Rd)', pilgrims: 293746, density: 65, statusAr: 'طبيعي', statusEn: 'Normal', color: '#00A36C', statusKey: 'safe', closedRoutes: 0 },
-    { id: 5, nameAr: 'منطقة 5 (وادي منى الضيق)', nameEn: 'Zone 5 (Narrow Valley)', pilgrims: 559214, density: 95, statusAr: 'مزدحم جداً', statusEn: 'Highly Crowded', color: '#1E5AA8', statusKey: 'danger', closedRoutes: 3 }
+    { id: 1, nameAr: 'منطقة 1 (جسر الجمرات)', nameEn: 'Zone 1 (Jamarat Bridge)', pilgrims: 351432, density: 45, statusAr: 'تفويج نشط / تدفق آمن', statusEn: 'Active Dispatch / Safe Flow', color: '#0D7A3E', statusKey: 'open', closedRoutes: 0 },
+    { id: 2, nameAr: 'منطقة 2 (الخيام السكنية)', nameEn: 'Zone 2 (Camps Grid)', pilgrims: 821356, density: 62, statusAr: 'تفويج مجدول / انتظار', statusEn: 'Scheduled / Standby', color: '#2B89C7', statusKey: 'moderate', closedRoutes: 0 },
+    { id: 3, nameAr: 'منطقة 3 (محطة القطار)', nameEn: 'Zone 3 (Train Station)', pilgrims: 590124, density: 88, statusAr: 'كثافة عالية / تباطؤ الحركة', statusEn: 'High Density / Slowdown', color: '#1C51A3', statusKey: 'slowdown', closedRoutes: 1 },
+    { id: 4, nameAr: 'منطقة 4 (طريق الشعيبين)', nameEn: 'Zone 4 (Al-Shuaibeen Rd)', pilgrims: 293746, density: 95, statusAr: 'طوارئ / مسار مغلق', statusEn: 'Emergency / Closed Route', color: '#91A0B3', statusKey: 'closed', closedRoutes: 3 },
+    { id: 5, nameAr: 'منطقة 5 (وادي منى الضيق)', nameEn: 'Zone 5 (Narrow Valley)', pilgrims: 559214, density: 40, statusAr: 'تفويج نشط / تدفق آمن', statusEn: 'Active Dispatch / Safe Flow', color: '#0D7A3E', statusKey: 'open', closedRoutes: 0 }
   ]);
 
   // Main Route corridors simulation list for the selected region
@@ -174,47 +174,29 @@ export default function CrowdManagementPage() {
       {/* ─── Header Panel ─── */}
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl glass border border-slate-200 bg-white">
         <div className="flex items-center gap-4">
-          <div className="hidden sm:flex w-12 h-12 rounded-xl bg-gradient-to-tr from-[#006C35] to-[#1E5AA8] items-center justify-center shadow-[0_0_15px_rgba(0,255,136,0.25)] flex-shrink-0">
-            <ShieldCheck className="text-slate-950" size={26} />
-          </div>
+          <img src="/sayer.PNG" alt="Sayer Logo" className="h-16 w-16 object-contain rounded-xl shadow-md flex-shrink-0" />
           <div>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[9px] font-black tracking-widest text-slate-600">SAUDI VISION 2030</span>
-            </div>
             <h1 className="text-xl font-black text-slate-900 text-glow-blue mt-0.5">
               {language === 'ar' ? 'إدارة الحشود والمنافذ' : 'Live Crowd Management & Corridors'}
             </h1>
             <p className="text-[10px] text-slate-600 font-bold uppercase">
-              {language === 'ar' ? 'منظومة المسار المضيء الرقمية' : 'Luminous Path Digital Cockpit Grid'}
+              {language === 'ar' ? 'منظومة سيّر الرقمية' : 'Sayer Digital Cockpit Grid'}
             </p>
           </div>
         </div>
 
-        {/* Live Clock HUD */}
         <div className="flex items-center gap-3">
-          <div className="text-right">
-            <span className="text-[#1E5AA8] font-mono text-base font-black tracking-widest block">{time}</span>
-            <span className="text-[9px] text-slate-600 font-bold uppercase mt-0.5">1447/11/13 هـ • GRID SYNCED</span>
-          </div>
-          <button
-            onClick={tickSimulation}
-            className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#00A36C] hover:border-[#006C35] active:scale-95 transition-all cursor-pointer"
-            title="Tick Live Sensors"
-          >
-            <Activity size={16} className="animate-pulse" />
-          </button>
         </div>
       </header>
 
       {/* ─── Metric Cards Grid ─── */}
       <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {[
-          { icon: Users, labelAr: 'إجمالي الحجاج', labelEn: 'Total Pilgrims', value: '2,951,432', color: 'text-[#006C35]' },
-          { icon: Flame, labelAr: 'الحشود الحالية', labelEn: 'Current Crowd', value: '2,345,678', color: 'text-[#2980B9]' },
-          { icon: MapPin, labelAr: 'المناطق النشطة', labelEn: 'Active Zones', value: '5', color: 'text-[#006C35]' },
-          { icon: TrendingUp, labelAr: 'الكثافة العامة', labelEn: 'Overall Density', value: '78%', color: 'text-[#1E5AA8]' },
-          { icon: AlertTriangle, labelAr: 'الحالات الطارئة', labelEn: 'Emergency Cases', value: '23', color: 'text-[#94A3B8]' }
+          { icon: Users, labelAr: 'إجمالي الحجاج', labelEn: 'Total Pilgrims', value: '2,951,432', color: 'text-slate-600' },
+          { icon: Flame, labelAr: 'الحشود الحالية', labelEn: 'Current Crowd', value: '2,345,678', color: 'text-[#2B89C7]' },
+          { icon: MapPin, labelAr: 'المناطق النشطة', labelEn: 'Active Zones', value: '5', color: 'text-[#0D7A3E]' },
+          { icon: TrendingUp, labelAr: 'الكثافة العامة', labelEn: 'Overall Density', value: '78%', color: 'text-[#1C51A3]' },
+          { icon: AlertTriangle, labelAr: 'الحالات الطارئة', labelEn: 'Emergency Cases', value: '23', color: 'text-[#EF4444]' }
         ].map((card, idx) => (
           <div
             key={idx}
@@ -317,9 +299,21 @@ export default function CrowdManagementPage() {
                 <h3 className="text-xs font-black tracking-wide text-slate-600 uppercase">
                   {language === 'ar' ? 'تفاصيل المنطقة المحددة' : 'Selected Grid Metrics'}
                 </h3>
-                <span className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded border ${currentRegion.statusKey === 'danger' ? 'text-[#1E5AA8] border-[#1E5AA8] bg-[#1E5AA8] animate-pulse' : 'text-[#2980B9] border-[#2980B9] bg-[#2980B9]'}`}>
-                  {language === 'ar' ? currentRegion.statusAr : currentRegion.statusEn}
-                </span>
+                {(() => {
+                  let badgeClass = 'text-emerald-700 bg-emerald-50 border-emerald-200';
+                  if (currentRegion.statusKey === 'moderate') {
+                    badgeClass = 'text-sky-700 bg-sky-50 border-sky-200';
+                  } else if (currentRegion.statusKey === 'slowdown') {
+                    badgeClass = 'text-indigo-700 bg-indigo-50 border-indigo-200';
+                  } else if (currentRegion.statusKey === 'closed') {
+                    badgeClass = 'text-slate-700 bg-slate-100 border-slate-300 animate-pulse';
+                  }
+                  return (
+                    <span className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded border ${badgeClass}`}>
+                      {language === 'ar' ? currentRegion.statusAr : currentRegion.statusEn}
+                    </span>
+                  );
+                })()}
               </div>
 
               <div className="space-y-2">
@@ -351,7 +345,7 @@ export default function CrowdManagementPage() {
 
             <button
               onClick={handleApplyZoneSettings}
-              className="w-full py-1.5 rounded-lg bg-[#1E5AA8] hover:bg-[#1E5AA8] border border-[#1E5AA8] text-[#1E5AA8] font-black text-[9px] tracking-widest uppercase hover:scale-[1.01] transition-all cursor-pointer mt-4"
+              className="w-full py-2 rounded-lg bg-[#1E5AA8] hover:bg-[#1E5AA8]/90 border border-[#1E5AA8] text-white font-black text-[9px] tracking-widest uppercase hover:scale-[1.01] transition-all cursor-pointer mt-4"
             >
               {language === 'ar' ? 'تحديث وتفويج المنطقة المحددة' : 'DEPLOY REGION OVERRIDES'}
             </button>
@@ -377,25 +371,25 @@ export default function CrowdManagementPage() {
             <div className="grid grid-cols-2 gap-3 mt-3">
               <button
                 onClick={handleOpenAllRoutes}
-                className="py-2.5 rounded-xl border border-[#006C35] bg-[#006C35] hover:border-emerald-400 text-[#00A36C] text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_10px_rgba(16,185,129,0.05)] hover:scale-[1.02]"
+                className="py-2.5 rounded-xl border border-emerald-600 bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_10px_rgba(16,185,129,0.05)] hover:scale-[1.02]"
               >
                 {language === 'ar' ? '🔓 فتح جميع المسارات' : '🔓 OPEN ALL ROUTES'}
               </button>
               <button
                 onClick={() => addToast(language === 'ar' ? '⚡ تم تحديد مسارات ذكية للتعديل' : '⚡ Smart route adjustments loaded', 'success')}
-                className="py-2.5 rounded-xl border border-[#2980B9] bg-[#2980B9] hover:border-amber-400 text-[#2980B9] text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer hover:scale-[1.02]"
+                className="py-2.5 rounded-xl border border-sky-600 bg-sky-600 hover:bg-sky-700 text-white text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer hover:scale-[1.02]"
               >
                 {language === 'ar' ? '⚡ فتح مسارات محددة' : '⚡ OPEN SELECTED'}
               </button>
               <button
                 onClick={handleCloseAllRoutes}
-                className="py-2.5 rounded-xl border border-[#1E5AA8] bg-[#1E5AA8] hover:border-rose-400 text-[#1E5AA8] text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_10px_rgba(239,68,68,0.05)] hover:scale-[1.02]"
+                className="py-2.5 rounded-xl border border-rose-600 bg-rose-600 hover:bg-rose-700 text-white text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_10px_rgba(239,68,68,0.05)] hover:scale-[1.02]"
               >
                 {language === 'ar' ? '🔒 إغلاق جميع المسارات' : '🔒 CLOSE ALL ROUTES'}
               </button>
               <button
                 onClick={() => addToast(language === 'ar' ? '🔒 تم إغلاق مسارات تفاديًا للازدحام' : '🔒 Corridor limits applied', 'warning')}
-                className="py-2.5 rounded-xl border border-[#1B3A5C] bg-white hover:border-violet-400 text-[#2980B9] text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer hover:scale-[1.02]"
+                className="py-2.5 rounded-xl border border-slate-700 bg-slate-700 hover:bg-slate-800 text-white text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer hover:scale-[1.02]"
               >
                 {language === 'ar' ? '🔒 إغلاق مسارات محددة' : '🔒 CLOSE SELECTED'}
               </button>
@@ -411,25 +405,25 @@ export default function CrowdManagementPage() {
             <div className="grid grid-cols-2 gap-3 mt-3">
               <button
                 onClick={() => handleDirectAction('north', 'open')}
-                className="py-2 rounded-xl bg-[#006C35] border border-[#006C35] hover:border-emerald-400 text-[#00A36C] text-[9px] font-black uppercase transition-all cursor-pointer hover:scale-[1.01]"
+                className="py-2 rounded-xl bg-emerald-600 border border-emerald-600 hover:bg-emerald-700 text-white text-[9px] font-black uppercase transition-all cursor-pointer hover:scale-[1.01]"
               >
                 {language === 'ar' ? '🟢 فتح المسار الشمالي' : '🟢 OPEN NORTH ROUTE'}
               </button>
               <button
                 onClick={() => handleDirectAction('south', 'closed')}
-                className="py-2 rounded-xl bg-[#1E5AA8] border border-[#1E5AA8] hover:border-rose-400 text-[#1E5AA8] text-[9px] font-black uppercase transition-all cursor-pointer hover:scale-[1.01]"
+                className="py-2 rounded-xl bg-rose-600 border border-rose-600 hover:bg-rose-700 text-white text-[9px] font-black uppercase transition-all cursor-pointer hover:scale-[1.01]"
               >
                 {language === 'ar' ? '🔴 إغلاق المسار الجنوبي' : '🔴 CLOSE SOUTH ROUTE'}
               </button>
               <button
                 onClick={() => handleDirectAction('east', 'open')}
-                className="py-2 rounded-xl bg-[#006C35] border border-[#006C35] hover:border-emerald-400 text-[#00A36C] text-[9px] font-black uppercase transition-all cursor-pointer hover:scale-[1.01]"
+                className="py-2 rounded-xl bg-emerald-600 border border-emerald-600 hover:bg-emerald-700 text-white text-[9px] font-black uppercase transition-all cursor-pointer hover:scale-[1.01]"
               >
                 {language === 'ar' ? '🟢 فتح المسار الشرقي' : '🟢 OPEN EAST ROUTE'}
               </button>
               <button
                 onClick={() => handleDirectAction('west', 'closed')}
-                className="py-2 rounded-xl bg-[#1E5AA8] border border-[#1E5AA8] hover:border-rose-400 text-[#1E5AA8] text-[9px] font-black uppercase transition-all cursor-pointer hover:scale-[1.01]"
+                className="py-2 rounded-xl bg-rose-600 border border-rose-600 hover:bg-rose-700 text-white text-[9px] font-black uppercase transition-all cursor-pointer hover:scale-[1.01]"
               >
                 {language === 'ar' ? '🔴 إغلاق المسار الغربي' : '🔴 CLOSE WEST ROUTE'}
               </button>
@@ -437,7 +431,7 @@ export default function CrowdManagementPage() {
 
             <button
               onClick={handleApplyZoneSettings}
-              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#006C35] to-[#1E5AA8] border border-[#006C35] text-[#00A36C] font-black text-[10px] tracking-widest uppercase hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer mt-4"
+              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-[#1E5AA8] border border-[#1E5AA8] text-white font-black text-[10px] tracking-widest uppercase hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer mt-4"
             >
               {language === 'ar' ? 'تطبيق الأمر على المنطقة' : 'APPLY GRID INSTRUCTIONS'}
             </button>
@@ -464,15 +458,15 @@ export default function CrowdManagementPage() {
               </thead>
               <tbody className="divide-y divide-slate-800">
                 {routeCorridors.map((route) => {
-                  let statusBadge = 'text-[#00A36C] bg-[#006C35] border-[#006C35]';
-                  let statusLabel = language === 'ar' ? 'مفتوح' : 'Open';
+                  let statusBadge = 'text-emerald-700 bg-emerald-50 border-emerald-200';
+                  let statusLabel = language === 'ar' ? 'تدفق آمن' : 'Safe Flow';
 
                   if (route.status === 'closed') {
-                    statusBadge = 'text-[#1E5AA8] bg-[#1E5AA8] border-[#1E5AA8]';
+                    statusBadge = 'text-slate-700 bg-slate-100 border-slate-300';
                     statusLabel = language === 'ar' ? 'مغلق' : 'Closed';
                   } else if (route.status === 'crowded') {
-                    statusBadge = 'text-[#2980B9] bg-[#2980B9] border-[#2980B9]';
-                    statusLabel = language === 'ar' ? 'مزدحم' : 'Crowded';
+                    statusBadge = 'text-sky-700 bg-sky-50 border-sky-200';
+                    statusLabel = language === 'ar' ? 'انتظار' : 'Standby';
                   }
 
                   return (
@@ -484,13 +478,13 @@ export default function CrowdManagementPage() {
                         </span>
                       </td>
                       <td className="p-2.5 font-mono font-bold">{route.density}%</td>
-                      <td className={`p-2.5 font-mono font-bold tracking-widest ${route.status === 'closed' ? 'text-[#1E5AA8] animate-pulse' : 'text-[#00A36C]'}`}>
+                      <td className={`p-2.5 font-mono font-bold tracking-widest ${route.status === 'closed' ? 'text-rose-600 animate-pulse' : 'text-emerald-600'}`}>
                         {route.flow}
                       </td>
                       <td className="p-2.5">
                         <button
                           onClick={() => toggleRoute(route.id)}
-                          className={`px-2 py-1 rounded text-[8px] font-black uppercase cursor-pointer border ${route.status === 'open' ? 'bg-[#1E5AA8] border-[#1E5AA8] text-[#1E5AA8]' : 'bg-[#006C35] border-[#006C35] text-[#00A36C]'}`}
+                          className={`px-2 py-1 rounded text-[8px] font-black uppercase cursor-pointer border ${route.status === 'open' ? 'bg-rose-50 border-rose-200 text-rose-700 hover:bg-rose-100' : 'bg-emerald-50 border-emerald-200 text-emerald-700 hover:bg-emerald-100'}`}
                         >
                           {route.status === 'open' ? (language === 'ar' ? 'إغلاق' : 'CLOSE') : (language === 'ar' ? 'فتح' : 'OPEN')}
                         </button>

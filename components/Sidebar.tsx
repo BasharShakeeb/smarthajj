@@ -18,7 +18,8 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldCheck,
-  CircleDot
+  CircleDot,
+  X
 } from 'lucide-react';
 import { useStore } from '@/store/useStore';
 import { translations } from '@/lib/translations';
@@ -27,6 +28,7 @@ export const Sidebar = () => {
   const pathname = usePathname();
   const { isSidebarOpen, toggleSidebar, language, setLanguage, theme, setTheme, incidents } = useStore();
   const t = translations[language];
+  const [isLogoModalOpen, setIsLogoModalOpen] = React.useState(false);
 
   const menuItems = [
     { icon: LayoutDashboard, label: t.dashboard,       href: '/overview' },
@@ -40,7 +42,8 @@ export const Sidebar = () => {
   ];
 
   return (
-    <aside
+    <>
+      <aside
       className={`
         fixed top-0 bottom-0 h-screen bg-[#0F2440]/95 backdrop-blur-md border-[#1B3A5C] transition-all duration-300 z-50
         shadow-[0_0_30px_rgba(30,90,168,0.08)] border-r flex flex-col justify-between
@@ -53,9 +56,13 @@ export const Sidebar = () => {
         {/* Top Branding */}
         <div className="p-5 border-b border-[#1B3A5C] flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#006C35] to-[#1E5AA8] flex items-center justify-center shadow-[0_0_12px_rgba(0,108,53,0.25)]">
-              <ShieldCheck className="text-white" size={24} />
-            </div>
+            <button 
+              onClick={() => setIsLogoModalOpen(true)} 
+              className="cursor-zoom-in transition-transform hover:scale-105 active:scale-95 duration-200 focus:outline-none flex-shrink-0" 
+              title={language === 'ar' ? 'تكبير الشعار' : 'Zoom Logo'}
+            >
+              <img src="/sayer.PNG" alt="Sayer Logo" className="w-10 h-10 object-contain rounded-xl shadow-sm" />
+            </button>
             {isSidebarOpen && (
               <div className="flex flex-col min-w-0">
                 <span className="font-extrabold text-sm tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#00A36C] to-[#1E5AA8]">
@@ -192,5 +199,50 @@ export const Sidebar = () => {
         </div>
       </div>
     </aside>
+
+    {isLogoModalOpen && (
+      <div 
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050B14]/85 backdrop-blur-lg transition-all duration-300 p-4"
+        onClick={() => setIsLogoModalOpen(false)}
+      >
+        <div 
+          className="relative max-w-lg w-full bg-[#0F2440]/90 border border-[#1B3A5C] p-6 rounded-3xl shadow-2xl flex flex-col items-center gap-4"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Close Button */}
+          <button 
+            onClick={() => setIsLogoModalOpen(false)}
+            className="absolute top-4 right-4 p-2 rounded-full border border-[#1B3A5C] text-slate-400 hover:text-[#EF4444] hover:border-[#EF4444]/40 transition-all bg-[#0A1628]"
+            title={language === 'ar' ? 'إغلاق' : 'Close'}
+          >
+            <X size={18} />
+          </button>
+
+          {/* Title / Header */}
+          <div className="text-center mt-2">
+            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-[#00A36C] to-[#1E5AA8] tracking-wide">
+              {t.appName}
+            </h3>
+            <p className="text-xs text-slate-400 mt-1 font-semibold">
+              {t.subTitle}
+            </p>
+          </div>
+
+          {/* Enlarged Image Preview */}
+          <div className="relative w-full aspect-[1/1.4] max-h-[70vh] bg-white/5 rounded-2xl border border-white/10 p-4 flex items-center justify-center overflow-hidden shadow-inner">
+            <img 
+              src="/sayer.PNG" 
+              alt="Sayer Full Logo" 
+              className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+            />
+          </div>
+
+          <p className="text-[10px] font-black text-slate-500 tracking-widest uppercase">
+            SAYER OPERATIONAL DASHBOARD
+          </p>
+        </div>
+      </div>
+    )}
+  </>
   );
 };

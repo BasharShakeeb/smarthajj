@@ -90,14 +90,6 @@ export default function RoutesPage() {
             </h1>
           </div>
           <div className="flex items-center gap-4">
-            <div className="text-right">
-              <span className="text-slate-900 font-mono text-sm font-black tracking-widest block">{time}</span>
-              <span className="text-[10px] text-slate-600 font-bold uppercase">1447/11/13 هـ</span>
-            </div>
-            <div className="w-8 h-8 rounded-full bg-[#1E293B] border border-slate-200 flex items-center justify-center text-slate-800 relative">
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-              <Info size={16} />
-            </div>
           </div>
         </div>
 
@@ -106,7 +98,7 @@ export default function RoutesPage() {
           <div className="p-4 rounded-xl bg-white/95 shadow-lg border border-slate-200 backdrop-blur-md flex flex-col justify-between h-[90px]">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black text-slate-600">{language === 'ar' ? 'إجمالي المسارات' : 'Total Routes'}</span>
-              <RouteIcon size={16} className="text-slate-500" />
+              <RouteIcon size={16} className="text-slate-600" />
             </div>
             <span className="text-2xl font-black font-mono text-slate-900">128</span>
           </div>
@@ -114,7 +106,7 @@ export default function RoutesPage() {
           <div className="p-4 rounded-xl bg-white/95 shadow-lg border border-slate-200 backdrop-blur-md flex flex-col justify-between h-[90px]">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black text-slate-600">{language === 'ar' ? 'مسارات مفتوحة' : 'Open Routes'}</span>
-              <CheckCircle size={16} className="text-[#006C35]" />
+              <CheckCircle size={16} className="text-[#0D7A3E]" />
             </div>
             <span className="text-2xl font-black font-mono text-slate-900">95</span>
           </div>
@@ -122,7 +114,7 @@ export default function RoutesPage() {
           <div className="p-4 rounded-xl bg-white/95 shadow-lg border border-slate-200 backdrop-blur-md flex flex-col justify-between h-[90px]">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black text-slate-600">{language === 'ar' ? 'مسارات مزدحمة' : 'Busy Routes'}</span>
-              <AlertTriangle size={16} className="text-[#1E5AA8]" />
+              <AlertTriangle size={16} className="text-[#F59E0B]" />
             </div>
             <span className="text-2xl font-black font-mono text-slate-900">27</span>
           </div>
@@ -130,7 +122,7 @@ export default function RoutesPage() {
           <div className="p-4 rounded-xl bg-white/95 shadow-lg border border-slate-200 backdrop-blur-md flex flex-col justify-between h-[90px]">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black text-slate-600">{language === 'ar' ? 'مسارات مغلقة' : 'Closed Routes'}</span>
-              <XCircle size={16} className="text-[#94A3B8]" />
+              <XCircle size={16} className="text-[#EF4444]" />
             </div>
             <span className="text-2xl font-black font-mono text-slate-900">6</span>
           </div>
@@ -138,7 +130,7 @@ export default function RoutesPage() {
           <div className="p-4 rounded-xl bg-white/95 shadow-lg border border-slate-200 backdrop-blur-md flex flex-col justify-between h-[90px]">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black text-slate-600">{language === 'ar' ? 'متوسط سرعة الحركة' : 'Average Speed'}</span>
-              <Activity size={16} className="text-[#006C35]" />
+              <Activity size={16} className="text-[#0D7A3E]" />
             </div>
             <div className="flex items-baseline gap-1">
               <span className="text-2xl font-black font-mono text-slate-900">3.2</span>
@@ -149,7 +141,7 @@ export default function RoutesPage() {
           <div className="p-4 rounded-xl bg-white/95 shadow-lg border border-slate-200 backdrop-blur-md flex flex-col justify-between h-[90px]">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black text-slate-600">{language === 'ar' ? 'متوسط وقت الوصول' : 'Avg. ETA'}</span>
-              <Clock size={16} className="text-[#2980B9]" />
+              <Clock size={16} className="text-[#2B89C7]" />
             </div>
             <div className="flex items-baseline gap-1">
               <span className="text-2xl font-black font-mono text-slate-900">18</span>
@@ -169,19 +161,6 @@ export default function RoutesPage() {
           {/* Smart Routes Map Container (Full Width) */}
           <div className="flex flex-col rounded-2xl border border-slate-200 bg-white overflow-hidden relative h-[70vh] min-h-[550px]">
             {/* Map UI Elements */}
-
-
-            <div className="absolute top-4 right-4 z-10 flex gap-2">
-              <div className="flex flex-col px-3 py-2 rounded-xl bg-white/95 shadow-lg border border-slate-200 backdrop-blur-md">
-                <span className="text-[10px] font-black text-slate-700 mb-1.5 border-b border-slate-100 pb-1">{language === 'ar' ? 'مؤشرات التفويج والتدفق الميداني' : 'Dispatching & Flow Status'}</span>
-                <div className="flex flex-col gap-1.5 text-[9px] font-bold text-slate-800">
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#006C35] shadow-[0_0_6px_#006C35]" />{language === 'ar' ? 'تفويج نشط / تدفق آمن' : 'Active Dispatch / Safe Flow'}</span>
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#2980B9] shadow-[0_0_6px_#2980B9]" />{language === 'ar' ? 'تفويج مجدول / انتظار' : 'Scheduled / Standby'}</span>
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#1E5AA8] shadow-[0_0_6px_#1E5AA8]" />{language === 'ar' ? 'كثافة عالية / تباطؤ الحركة' : 'High Density / Slowdown'}</span>
-                  <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#94A3B8]" />{language === 'ar' ? 'طوارئ / مسار مغلق' : 'Emergency / Closed'}</span>
-                </div>
-              </div>
-            </div>
 
             <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-1">
               <div className="flex flex-col rounded-xl bg-white/95 shadow-md border border-slate-200 overflow-hidden backdrop-blur-md">
